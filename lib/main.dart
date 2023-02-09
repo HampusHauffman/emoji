@@ -1,4 +1,5 @@
 import 'package:bordered_text/bordered_text.dart';
+import 'package:emoji_count/chart.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,10 +31,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Emoji counter',
       theme: ThemeData(
-        //fontFamily: 'NotoColorEmoji',
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: EmojiBarChart(),
     );
   }
 }

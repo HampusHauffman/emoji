@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 
 class Emoji {
   String emoji;
-  List<DateTime> count;
+  List<DateTime> count = [];
 
   Emoji({required this.emoji, required this.count});
 
@@ -34,6 +34,14 @@ class EmojiProvider extends ChangeNotifier {
   List<Emoji> emojis;
   FirebaseFirestore db = FirebaseFirestore.instance;
   late User user;
+
+  int get largestCount => emojis.length > 1
+      ? emojis
+          .reduce((value, element) =>
+              value.count.length > element.count.length ? value : element)
+          .count
+          .length
+      : 1;
 
   DocumentReference<Map<String, dynamic>> get docRef =>
       db.collection("users").doc(user.uid);
