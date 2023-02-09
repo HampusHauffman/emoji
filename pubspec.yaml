@@ -14,7 +14,13 @@ dependencies:
   collection: ^1.16.0
   shared_preferences: ^2.0.15
   emoji_picker_flutter: ^1.5.2
+  flutter_emoji: 2.4.0
   bordered_text: ^2.0.0
+  firebase_core: ^2.4.1
+  cloud_firestore: ^4.3.1
+  firebase_auth: ^4.2.5
+  google_sign_in: 5.4.4
+  google_sign_in_web: ^0.10.2+1
 
 
 dev_dependencies:

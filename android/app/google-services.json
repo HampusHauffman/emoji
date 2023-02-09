@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "213704231787",
+    "project_id": "emoji-4cbcb",
+    "storage_bucket": "emoji-4cbcb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213704231787:android:9cd21f51b4ede1aaf09a2e",
+        "android_client_info": {
+          "package_name": "com.emojicount.emoji_count"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213704231787-7e2vsvr0iva85gfqg17ceuqe4uoujhqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWM1OwbDK8MSe1fqDdKOVRbQyHQgpzv4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213704231787-7e2vsvr0iva85gfqg17ceuqe4uoujhqa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "213704231787-jnrae12q749mgfrtq6lg9uii2373nd8o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emojicount.emojiCount"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
