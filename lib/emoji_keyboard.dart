@@ -26,6 +26,8 @@ class EmojiKeyboard extends StatelessWidget {
           Flexible(
               flex: 1,
               child: EmojiPicker(
+                config: Config(
+                    emojiTextStyle: TextStyle(fontFamily: "NotoColorEmoji")),
                 onEmojiSelected: (category, emoji) {
                   p.addEmoji(emoji.emoji);
                 },

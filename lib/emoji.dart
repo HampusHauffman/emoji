@@ -87,4 +87,10 @@ class EmojiProvider extends ChangeNotifier {
     emojis.add(Emoji(emoji: e, count: []));
     docRef.update(toMap());
   }
+
+  void removeEmoji(int index) {
+    debugPrint(index.toString());
+    emojis.removeAt(index);
+    docRef.update(toMap());
+  }
 }

@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Emoji counter',
       theme: ThemeData(
+        //fontFamily: 'NotoColorEmoji',
         useMaterial3: true,
-        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
     );
@@ -99,12 +99,14 @@ class EmojiScrollView extends StatelessWidget {
             crossAxisSpacing: 10.0,
           ),
           delegate: SliverChildBuilderDelegate(
+            childCount: p.emojis.length,
             (BuildContext context, int index) {
               return EmojiWidget(
                 index: index,
+                key: Key(index.toString()),
+                emoji: p.emojis[index],
               );
             },
-            childCount: p.emojis.length,
           ),
         )
       ],
@@ -114,16 +116,26 @@ class EmojiScrollView extends StatelessWidget {
 
 class EmojiWidget extends StatelessWidget {
   final int index;
+  final Emoji emoji;
 
   const EmojiWidget({
     required this.index,
-    Key? key,
+    required Key? key,
+    required this.emoji,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final p = context.watch<EmojiProvider>();
     return GestureDetector(
+      onLongPress: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return RemoveEmojiAlertDialog(p: p, index: index);
+          },
+        );
+      },
       onTap: () {
         p.clickEmoji(index);
       },
@@ -131,19 +143,58 @@ class EmojiWidget extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              p.emojis[index].emoji,
-              style: const TextStyle(fontSize: 70),
+              emoji.emoji,
+              style: const TextStyle(
+                fontSize: 70,
+                fontFamily: "NotoColorEmoji",
+              ),
             ),
           ),
           Center(
               child: BorderedText(
             strokeColor: Colors.white,
             child: Text(
-              p.emojis[index].count.length.toString(),
+              emoji.count.length.toString(),
               style: const TextStyle(fontSize: 50, fontWeight: FontWeight.w900),
             ),
           ))
         ],
+      ),
+    );
+  }
+}
+
+class RemoveEmojiAlertDialog extends StatelessWidget {
+  const RemoveEmojiAlertDialog({
+    super.key,
+    required this.p,
+    required this.index,
+  });
+
+  final EmojiProvider p;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context, 'Cancel');
+          },
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            p.removeEmoji(index);
+            Navigator.pop(context, 'OK');
+          },
+          child: const Text('OK'),
+        ),
+      ],
+      title: Text(
+        "Delete:${p.emojis[index].emoji}??",
+        style: const TextStyle(fontFamily: "NotoColorEmoji"),
       ),
     );
   }
